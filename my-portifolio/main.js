@@ -82,6 +82,29 @@ scene.background = spaceTexture;
 // Add orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
 
+moon.position.z = 30;
+moon.position.setX(-10);
+
+
+function moveCamera(){
+  const t = document.body.getBoundingClientRect().top;
+  moon.rotation.x += 0.05;
+  moon.rotation.y += 0.0075;
+  moon.rotation.z += 0.05;
+
+  sam.rotation.y += 0.01;
+  sam.rotation.z += 0.01;
+
+
+  camera.position.z = t;
+
+  camera.rotation.x = t * -0.01;
+  camera.rotation.y = t * -0.0002;
+  camera.rotation.z = t * -0.0002;
+
+}
+document.body.onscroll = moveCamera
+
 // Render function
 function animate() {
   requestAnimationFrame(animate);
@@ -95,3 +118,6 @@ function animate() {
 }
 
 animate();
+
+
+
